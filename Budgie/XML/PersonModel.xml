@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<person id="user" isUser="true">
+  <name>
+    <pString value="John" probability="1" />
+  </name>
+  <age>
+    <pInt value="32" probability="1" />
+  </age>
+  <gender>
+    <pGender value="male" probability="0.8" />
+    <pGender value="female" probability="0.2" />
+  </gender>
+  <integrationPattern>
+    <pIntegrationPattern value="simultaneous" probability="0.5" />
+    <pIntegrationPattern value="sequential" probability="0.5" />
+  </integrationPattern>
+
+  <!-- the emotion -->
+  <emotionPleasure>
+    <pPadValue value="10" probability="0.8" />
+    <pPadValue value="0" probability="0.2" />
+  </emotionPleasure>
+  <emotionArousal>
+    <pPadValue value="10" probability="1" />
+  </emotionArousal>
+  <emotionDominance>
+    <pPadValue value="3" probability="1" />
+  </emotionDominance>
+
+  <!-- the handicaps -->
+  <handicapHearing>
+    <pBool value="true" probability="0.8" />
+    <pBool value="false" probability="0.2" />
+  </handicapHearing>
+  <handicapVision>
+    <pBool value="false" probability="1" />
+  </handicapVision>
+  <handicapSpeaking>
+    <pBool value="true" probability="0.8" />
+    <pBool value="false" probability="0.2" />
+  </handicapSpeaking>
+  <handicapMobility>
+    <pBool value="false" probability="0.6" />
+    <pBool value="true" probability="0.4" />
+  </handicapMobility>
+
+  <!-- the personality traits (big five) -->
+  <personalityNeuroticism>
+    <pPersonalityValue value="0" probability="1" />
+  </personalityNeuroticism>
+  <personalityExtraversion>
+    <pPersonalityValue value="48" probability="1" />
+  </personalityExtraversion>
+  <personalityOpenness>
+    <pPersonalityValue value="1" probability="1" />
+  </personalityOpenness>
+  <personalityAgreeableness>
+    <pPersonalityValue value="47" probability="1" />
+  </personalityAgreeableness>
+  <personalityConscientiousness>
+    <pPersonalityValue value="2" probability="1" />
+  </personalityConscientiousness>
+
+  <!-- the ta-eg values -->
+  <taegEnthusiasm>
+    <pTaegValue value="1" probability="1" />
+  </taegEnthusiasm>
+  <taegCompetence>
+    <pTaegValue value="5" probability="1" />
+  </taegCompetence>
+  <taegNegativeAttitude>
+    <pTaegValue value="2.1" probability="1" />
+  </taegNegativeAttitude>
+  <taegPositiveAttitude>
+    <pTaegValue value="3.9" probability="1" />
+  </taegPositiveAttitude>
+
+  <!-- the availability values -->
+  <availabilityCognitive>
+    <pBool value="true" probability="0.6" />
+    <pBool value="false" probability="0.4" />
+  </availabilityCognitive>
+  <availabilityCanSee>
+    <pBool value="true" probability="1" />
+  </availabilityCanSee>
+  <availabilityCanHear>
+    <pBool value="true" probability="1" />
+  </availabilityCanHear>
+  <availabilityCanFeel>
+    <pBool value="true" probability="0.5" />
+    <pBool value="false" probability="0.5" />
+  </availabilityCanFeel>
+  <availabilityCanSpeak>
+    <pBool value="true" probability="0.3" />
+    <pBool value="false" probability="0.7" />
+  </availabilityCanSpeak>
+  <availabilityCanTouch>
+    <pBool value="true" probability="0.8" />
+    <pBool value="false" probability="0.2" />
+  </availabilityCanTouch>
+
+  <!-- the preferences -->
+  <preferenceChannelAural>
+    <pBool value="true" probability="0.8881" />
+    <pBool value="false" probability="0.1119" />
+  </preferenceChannelAural>
+  <preferenceChannelVisual>
+    <pBool value="true" probability="0.8" />
+    <pBool value="false" probability="0.2" />
+  </preferenceChannelVisual>
+  <preferenceChannelTactile>
+    <pBool value="true" probability=".3" />
+    <pBool value="false" probability=".7" />
+  </preferenceChannelTactile>
+
+  <!--optional informationen for B1-->
+  <knowledge>
+    <declarativeGoalKnowledge goalName="connect" goalID="3.2">
+      <knowledgeValue value="novice" probability="0.5"/>
+      <knowledgeValue value="advanced novice" probability="0.3"/>
+      <knowledgeValue value="intermediate" probability="0.1"/>
+      <knowledgeValue value="advanced intermediate" probability="0.1"/>
+      <knowledgeValue value="expert" probability="0"/>
+    </declarativeGoalKnowledge>
+
+    <proceduralGoalKnowledge goalName="connect" goalID="3.2">
+      <knowledgeValue value="novice" probability="0.5"/>
+      <knowledgeValue value="advanced novice" probability="0.3"/>
+      <knowledgeValue value="intermediate" probability="0.1"/>
+      <knowledgeValue value="advanced intermediate" probability="0.1"/>
+      <knowledgeValue value="expert" probability="0"/>
+    </proceduralGoalKnowledge>
+
+    <declarativeConceptKnowledge conceptName="HDMI">
+      <knowledgeValue value="novice" probability="0.5"/>
+      <knowledgeValue value="advanced novice" probability="0.3"/>
+      <knowledgeValue value="intermediate" probability="0.1"/>
+      <knowledgeValue value="advanced intermediate" probability="0.1"/>
+      <knowledgeValue value="expert" probability="0"/>
+    </declarativeConceptKnowledge>
+
+    <declarativeConceptKnowledge conceptName="Receiver">
+      <knowledgeValue value="novice" probability="0.5"/>
+      <knowledgeValue value="advanced novice" probability="0.3"/>
+      <knowledgeValue value="intermediate" probability="0.1"/>
+      <knowledgeValue value="advanced intermediate" probability="0.1"/>
+      <knowledgeValue value="expert" probability="0"/>
+    </declarativeConceptKnowledge>
+
+    <declarativeConceptKnowledge conceptName="Blueray">
+      <knowledgeValue value="novice" probability="0.5"/>
+      <knowledgeValue value="advanced novice" probability="0.3"/>
+      <knowledgeValue value="intermediate" probability="0.1"/>
+      <knowledgeValue value="advanced intermediate" probability="0.1"/>
+      <knowledgeValue value="expert" probability="0"/>
+    </declarativeConceptKnowledge>
+
+    <declarativeConceptKnowledge conceptName="Amplifier">
+      <knowledgeValue value="novice" probability="0.5"/>
+      <knowledgeValue value="advanced novice" probability="0.3"/>
+      <knowledgeValue value="intermediate" probability="0.1"/>
+      <knowledgeValue value="advanced intermediate" probability="0.1"/>
+      <knowledgeValue value="expert" probability="0"/>
+    </declarativeConceptKnowledge>
+
+    <declarativeConceptKnowledge conceptName="TV">
+      <knowledgeValue value="novice" probability="0"/>
+      <knowledgeValue value="advanced novice" probability="0.1"/>
+      <knowledgeValue value="intermediate" probability="0.1"/>
+      <knowledgeValue value="advanced intermediate" probability="0.7"/>
+      <knowledgeValue value="expert" probability="0.1"/>
+    </declarativeConceptKnowledge>
+
+    <declarativeConceptKnowledge conceptName="Cinch">
+      <knowledgeValue value="novice" probability="0.5"/>
+      <knowledgeValue value="advanced novice" probability="0.3"/>
+      <knowledgeValue value="intermediate" probability="0.1"/>
+      <knowledgeValue value="advanced intermediate" probability="0.1"/>
+      <knowledgeValue value="expert" probability="0"/>
+    </declarativeConceptKnowledge>
+
+    <declarativeConceptKnowledge conceptName="Scart">
+      <knowledgeValue value="novice" probability="0"/>
+      <knowledgeValue value="advanced novice" probability="0.3"/>
+      <knowledgeValue value="intermediate" probability="0.5"/>
+      <knowledgeValue value="advanced intermediate" probability="0.2"/>
+      <knowledgeValue value="expert" probability="0"/>
+    </declarativeConceptKnowledge>
+
+    <proceduralConceptKnowledge conceptName="HDMI">
+      <knowledgeValue value="novice" probability="0.5"/>
+      <knowledgeValue value="advanced novice" probability="0.3"/>
+      <knowledgeValue value="intermediate" probability="0.1"/>
+      <knowledgeValue value="advanced intermediate" probability="0.1"/>
+      <knowledgeValue value="expert" probability="0"/>
+    </proceduralConceptKnowledge>
+
+    <proceduralConceptKnowledge conceptName="Cinch">
+      <knowledgeValue value="novice" probability="0.5"/>
+      <knowledgeValue value="advanced novice" probability="0.3"/>
+      <knowledgeValue value="intermediate" probability="0.1"/>
+      <knowledgeValue value="advanced intermediate" probability="0.1"/>
+      <knowledgeValue value="expert" probability="0"/>
+    </proceduralConceptKnowledge>
+
+    <proceduralConceptKnowledge conceptName="Blueray">
+      <knowledgeValue value="novice" probability="0.5"/>
+      <knowledgeValue value="advanced novice" probability="0.3"/>
+      <knowledgeValue value="intermediate" probability="0.1"/>
+      <knowledgeValue value="advanced intermediate" probability="0.1"/>
+      <knowledgeValue value="expert" probability="0"/>
+    </proceduralConceptKnowledge>
+
+    <proceduralConceptKnowledge conceptName="Amplifier">
+      <knowledgeValue value="novice" probability="0.5"/>
+      <knowledgeValue value="advanced novice" probability="0.3"/>
+      <knowledgeValue value="intermediate" probability="0.1"/>
+      <knowledgeValue value="advanced intermediate" probability="0.1"/>
+      <knowledgeValue value="expert" probability="0"/>
+    </proceduralConceptKnowledge>
+
+    <proceduralConceptKnowledge conceptName="Receiver">
+      <knowledgeValue value="novice" probability="0.5"/>
+      <knowledgeValue value="advanced novice" probability="0.3"/>
+      <knowledgeValue value="intermediate" probability="0.1"/>
+      <knowledgeValue value="advanced intermediate" probability="0.1"/>
+      <knowledgeValue value="expert" probability="0"/>
+    </proceduralConceptKnowledge>
+
+    <proceduralConceptKnowledge conceptName="TV">
+      <knowledgeValue value="novice" probability="0"/>
+      <knowledgeValue value="advanced novice" probability="0.2"/>
+      <knowledgeValue value="intermediate" probability="0.5"/>
+      <knowledgeValue value="advanced intermediate" probability="0.2"/>
+      <knowledgeValue value="expert" probability="0.1"/>
+    </proceduralConceptKnowledge>
+
+    <proceduralConceptKnowledge conceptName="Scart">
+      <knowledgeValue value="novice" probability="0.5"/>
+      <knowledgeValue value="advanced novice" probability="0.3"/>
+      <knowledgeValue value="intermediate" probability="0.1"/>
+      <knowledgeValue value="advanced intermediate" probability="0.1"/>
+      <knowledgeValue value="expert" probability="0"/>
+    </proceduralConceptKnowledge>
+  </knowledge>
+</person>
