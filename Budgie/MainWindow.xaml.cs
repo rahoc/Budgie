@@ -50,6 +50,7 @@ namespace Budgie
                 Console.WriteLine(p.Person.HandicapSpeaking[false]);
                 Console.WriteLine(p.Person.HandicapVision[true]);
                 Console.WriteLine(p.Person.HandicapVision[false]);
+
                 Thread.Sleep(1000);
             }
 

@@ -23,6 +23,7 @@ namespace Budgie
             // Variablendeklaration
             float random1;
             float random2;
+            Random rnd = new Random();
 
             // Erzeuge neues PersonModel
             this.Person = new PersonModel(id);
@@ -35,13 +36,13 @@ namespace Budgie
             this.Person.Age.Add(GenerateRandomNumber(1,99), 1);
             
             // Geschlecht
-            GenerateRandomDistribution(out random1, out random2);
+            GenerateRandomDistribution(rnd, out random1, out random2);
             // TODO: Muss/Sollte hier gerundet werden?
             this.Person.Gender.Add(Gender.male, random1);
             this.Person.Gender.Add(Gender.female, random2);
 
             // Integration Pattern
-            GenerateRandomDistribution(out random1, out random2);
+            GenerateRandomDistribution(rnd, out random1, out random2);
             this.Person.IntegrationPattern.Add(IntegrationPattern.sequential, random1);
             this.Person.IntegrationPattern.Add(IntegrationPattern.simultaneous, random2);
 
@@ -49,20 +50,29 @@ namespace Budgie
             // TODO: Wie genau funktionert padValue? 1-10 Werte oder auch max zwei?
 
             // Handicaps
-            GenerateRandomDistribution(out random1, out random2);
+            GenerateRandomDistribution(rnd, out random1, out random2);
             this.Person.HandicapHearing.Add(true, random1);
             this.Person.HandicapHearing.Add(false, random2);
-            GenerateRandomDistribution(out random1, out random2);
+            GenerateRandomDistribution(rnd, out random1, out random2);
             this.Person.HandicapMobility.Add(true, random1);
             this.Person.HandicapMobility.Add(false, random2);
-            GenerateRandomDistribution(out random1, out random2);
+            GenerateRandomDistribution(rnd, out random1, out random2);
             this.Person.HandicapSpeaking.Add(true, random1);
             this.Person.HandicapSpeaking.Add(false, random2);
-            GenerateRandomDistribution(out random1, out random2);
+            GenerateRandomDistribution(rnd, out random1, out random2);
             this.Person.HandicapVision.Add(true, random1);
             this.Person.HandicapVision.Add(false, random2);
 
-
+            // Preferences channel
+            GenerateRandomDistribution(rnd, out random1, out random2);
+            this.Person.PreferenceChannelAural.Add(true, random1);
+            this.Person.PreferenceChannelAural.Add(false, random2);
+            GenerateRandomDistribution(rnd, out random1, out random2);
+            this.Person.PreferenceChannelTactile.Add(true, random1);
+            this.Person.PreferenceChannelTactile.Add(false, random2);
+            GenerateRandomDistribution(rnd, out random1, out random2);
+            this.Person.PreferenceChannelVisual.Add(true, random1);
+            this.Person.PreferenceChannelVisual.Add(false, random2);
         }
 
         
@@ -89,10 +99,10 @@ namespace Budgie
         /// </summary>
         /// <param name="randomDist1">Erster Zufälliger wert zwischen 0 und 1.0, Summe aus beiden Werten ergibt 1.0</param>
         /// <param name="randomDist2">Zweiter Zufälliger wert zwischen 0 und 1.0, Summe aus beiden Werten ergibt 1.0</param>
-        protected static void GenerateRandomDistribution(out float randomDist1, out float randomDist2)
+        protected static void GenerateRandomDistribution(Random rnd, out float randomDist1, out float randomDist2)
         {
             // TODO: wenn Funktion schnell hintereinander aufgerufen wird erzeugt NextDouble() selben Zufallswert (TimeStamp!)
-            Random rnd = new Random();
+            
             randomDist1 = (float)rnd.NextDouble();
             randomDist2 = (float)1.0 - randomDist1;
         }
