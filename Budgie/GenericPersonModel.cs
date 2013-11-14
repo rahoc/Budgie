@@ -8,9 +8,9 @@ using System.Security.Cryptography;
 
 namespace Budgie
 {
-    class TestPerson
+    class GenericPersonModel
     {
-        PersonModel person;
+        private PersonModel person;
 
         public PersonModel Person
         {
@@ -18,7 +18,7 @@ namespace Budgie
             set { person = value; }
         }
 
-        public TestPerson(string id)
+        public GenericPersonModel(string id)
         {
             // Variablendeklaration
             float random1;
@@ -30,79 +30,87 @@ namespace Budgie
             
             // Name
             DeutscheNamen names = new DeutscheNamen();
-            this.Person.Name.Add(names.Names[GenerateRandomNumber(0,names.Names.Length)], 1);
+            this.Person.Name.Add(names.Names[Randomizer.GenerateRandomNumber(0,names.Names.Length)], 1);
 
             // Alter
-            this.Person.Age.Add(GenerateRandomNumber(1,99), 1);
+            this.Person.Age.Add(Randomizer.GenerateRandomNumber(1, 99), 1);
             
             // Geschlecht
-            GenerateRandomDistribution(rnd, out random1, out random2);
-            // TODO: Muss/Sollte hier gerundet werden?
+            GenerateRandomBoolDistribution(rnd, out random1, out random2);
             this.Person.Gender.Add(Gender.male, random1);
             this.Person.Gender.Add(Gender.female, random2);
 
             // Integration Pattern
-            GenerateRandomDistribution(rnd, out random1, out random2);
+            GenerateRandomBoolDistribution(rnd, out random1, out random2);
             this.Person.IntegrationPattern.Add(IntegrationPattern.sequential, random1);
             this.Person.IntegrationPattern.Add(IntegrationPattern.simultaneous, random2);
 
             // Emotion
             // TODO: Wie genau funktionert padValue? 1-10 Werte oder auch max zwei?
 
+            List<int> padValues = new List<int>();
+            // Erzeuge eine bestimmt Anzahl an Werten
+            int countPadValues = Randomizer.GenerateRandomNumber(0,10);
+            for (int i = 0; i<countPadValues; i++)
+            {
+                int newPadValue;
+                do {
+                    newPadValue = Randomizer.GenerateRandomNumber(0, 10);
+                }
+                while (padValues.Contains(newPadValue));
+                // Füge einigartige Zahl hinzu
+                padValues.Add(newPadValue);
+            }
+            // Erzeuge Wahrscheinlichkeiten
+            List<double> padValueProbabilities = Randomizer.RandomDistribution(rnd, 1.0, countPadValues);
+            // Füge Werte in Model ein
+            for (int i = 0; i < countPadValues; i++)
+            {
+                this.Person.EmotionArousal.Add(padValues[i], padValueProbabilities[i]);
+            }
+
+
+            
+
             // Handicaps
-            GenerateRandomDistribution(rnd, out random1, out random2);
+            GenerateRandomBoolDistribution(rnd, out random1, out random2);
             this.Person.HandicapHearing.Add(true, random1);
             this.Person.HandicapHearing.Add(false, random2);
-            GenerateRandomDistribution(rnd, out random1, out random2);
+            GenerateRandomBoolDistribution(rnd, out random1, out random2);
             this.Person.HandicapMobility.Add(true, random1);
             this.Person.HandicapMobility.Add(false, random2);
-            GenerateRandomDistribution(rnd, out random1, out random2);
+            GenerateRandomBoolDistribution(rnd, out random1, out random2);
             this.Person.HandicapSpeaking.Add(true, random1);
             this.Person.HandicapSpeaking.Add(false, random2);
-            GenerateRandomDistribution(rnd, out random1, out random2);
+            GenerateRandomBoolDistribution(rnd, out random1, out random2);
             this.Person.HandicapVision.Add(true, random1);
             this.Person.HandicapVision.Add(false, random2);
 
             // Preferences channel
-            GenerateRandomDistribution(rnd, out random1, out random2);
+            GenerateRandomBoolDistribution(rnd, out random1, out random2);
             this.Person.PreferenceChannelAural.Add(true, random1);
             this.Person.PreferenceChannelAural.Add(false, random2);
-            GenerateRandomDistribution(rnd, out random1, out random2);
+            GenerateRandomBoolDistribution(rnd, out random1, out random2);
             this.Person.PreferenceChannelTactile.Add(true, random1);
             this.Person.PreferenceChannelTactile.Add(false, random2);
-            GenerateRandomDistribution(rnd, out random1, out random2);
+            GenerateRandomBoolDistribution(rnd, out random1, out random2);
             this.Person.PreferenceChannelVisual.Add(true, random1);
             this.Person.PreferenceChannelVisual.Add(false, random2);
+
+
         }
 
         
 
-        /// <summary>
-        ///  Gute Zufallszahlen erzeugen
-        ///  Quelle: http://www.hofmann-robert.info/?p=360
-        /// </summary>
-        protected static int GenerateRandomNumber(int min, int max)
-        {
-            RNGCryptoServiceProvider c = new RNGCryptoServiceProvider();
-            // Integer benötigt 4 Byte
-            byte[] randomNumber = new byte[4];
-            // Array mit zufälligen Bytes befüllen
-            c.GetBytes(randomNumber);
-            // Byte-Array in einen Integer umwandeln
-            int result = Math.Abs(BitConverter.ToInt32(randomNumber, 0));
-            // Begrenzung durch Modulo Rechnung
-            return result % max + min;
-        }
+        
 
         /// <summary>
         /// Erzeuge eine zufällige Wahrscheinlichkeitsverteilung auf zwei Werte
         /// </summary>
         /// <param name="randomDist1">Erster Zufälliger wert zwischen 0 und 1.0, Summe aus beiden Werten ergibt 1.0</param>
         /// <param name="randomDist2">Zweiter Zufälliger wert zwischen 0 und 1.0, Summe aus beiden Werten ergibt 1.0</param>
-        protected static void GenerateRandomDistribution(Random rnd, out float randomDist1, out float randomDist2)
+        protected static void GenerateRandomBoolDistribution(Random rnd, out float randomDist1, out float randomDist2)
         {
-            // TODO: wenn Funktion schnell hintereinander aufgerufen wird erzeugt NextDouble() selben Zufallswert (TimeStamp!)
-            
             randomDist1 = (float)rnd.NextDouble();
             randomDist2 = (float)1.0 - randomDist1;
         }

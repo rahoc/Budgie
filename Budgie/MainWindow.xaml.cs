@@ -29,7 +29,7 @@ namespace Budgie
             InitializeComponent();
 
             while(true){
-                TestPerson p = new TestPerson("A");
+                GenericPersonModel p = new GenericPersonModel("A");
                 Console.WriteLine(p.Person.Name.First());
                 Console.WriteLine(p.Person.Age.First());
 
@@ -50,6 +50,28 @@ namespace Budgie
                 Console.WriteLine(p.Person.HandicapSpeaking[false]);
                 Console.WriteLine(p.Person.HandicapVision[true]);
                 Console.WriteLine(p.Person.HandicapVision[false]);
+
+                Console.WriteLine("EmotionArousal");
+                for (int i = 0; i < 11; i++)
+                {
+                    if (p.Person.EmotionArousal.ContainsKey(i))
+                    {
+                        Console.WriteLine(p.Person.EmotionArousal[i]);
+                    }
+                }
+
+                // Surroundingsmodel
+                Console.WriteLine("Surroundingsmodel");
+                GenericSurroundingsModel s = new GenericSurroundingsModel("B");
+                Console.WriteLine("Volume");
+                Console.WriteLine(s.Surrounding.Volume[Level.low]);
+                Console.WriteLine(s.Surrounding.Volume[Level.middle]);
+                Console.WriteLine(s.Surrounding.Volume[Level.high]);
+                Console.WriteLine((s.Surrounding.Volume[Level.high] + s.Surrounding.Volume[Level.middle] + s.Surrounding.Volume[Level.low]));
+                Console.WriteLine("Illumination");
+                Console.WriteLine(s.Surrounding.Illumination[Level.low]);
+                Console.WriteLine(s.Surrounding.Illumination[Level.middle]);
+                Console.WriteLine(s.Surrounding.Illumination[Level.high]);
 
                 Thread.Sleep(1000);
             }
