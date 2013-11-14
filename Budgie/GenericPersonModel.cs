@@ -46,31 +46,24 @@ namespace Budgie
             this.Person.IntegrationPattern.Add(IntegrationPattern.simultaneous, random2);
 
             // Emotion
-            // TODO: Wie genau funktionert padValue? 1-10 Werte oder auch max zwei?
-
-            List<int> padValues = new List<int>();
-            // Erzeuge eine bestimmt Anzahl an Werten
-            int countPadValues = Randomizer.GenerateRandomNumber(0,10);
-            for (int i = 0; i<countPadValues; i++)
+            // EmotionArousal
+            Dictionary<int, double> emotionArousals = Randomizer.IntAndProbabilityDistribuion(rnd, 0, 10, 1.0);
+            foreach (KeyValuePair<int, double> emotionArousal in emotionArousals)
             {
-                int newPadValue;
-                do {
-                    newPadValue = Randomizer.GenerateRandomNumber(0, 10);
-                }
-                while (padValues.Contains(newPadValue));
-                // Füge einigartige Zahl hinzu
-                padValues.Add(newPadValue);
+                this.Person.EmotionArousal.Add(emotionArousal.Key, emotionArousal.Value);
             }
-            // Erzeuge Wahrscheinlichkeiten
-            List<double> padValueProbabilities = Randomizer.RandomDistribution(rnd, 1.0, countPadValues);
-            // Füge Werte in Model ein
-            for (int i = 0; i < countPadValues; i++)
+            // EmotionDominance
+            Dictionary<int, double> emotionDominances = Randomizer.IntAndProbabilityDistribuion(rnd, 0, 10, 1.0);
+            foreach (KeyValuePair<int, double> emotionDominance in emotionDominances)
             {
-                this.Person.EmotionArousal.Add(padValues[i], padValueProbabilities[i]);
+                this.Person.EmotionDominance.Add(emotionDominance.Key, emotionDominance.Value);
             }
-
-
-            
+            // EmotionPleasure
+            Dictionary<int, double> emotionPleasures = Randomizer.IntAndProbabilityDistribuion(rnd, 0, 10, 1.0);
+            foreach (KeyValuePair<int, double> emotionPleasure in emotionPleasures)
+            {
+                this.Person.EmotionPleasure.Add(emotionPleasure.Key, emotionPleasure.Value);
+            }
 
             // Handicaps
             GenerateRandomBoolDistribution(rnd, out random1, out random2);
