@@ -1,0 +1,6 @@
+<Properties>
+	<Property Name="NMS.Url" Value="activemq:tcp://localhost:61616"/>
+  <!--<Property Name="Semaine.Components" Value="SemaineTestClock:Clock.Clock"/>-->
+	<Property Name="Semaine.Systemmanager.Gui"  Value="false"/>
+	<Property Name="Semaine.Use.Embedded.Broker" Value="false"/>
+</Properties>

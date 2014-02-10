@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DialogInput"
+	targetNamespace="http://sfb-trr-62.de/b3/DialogInput.xsd"
+	elementFormDefault="qualified"
+	xmlns="http://sfb-trr-62.de/b3/DialogInput.xsd"
+	xmlns:mstns="http://sfb-trr-62.de/b3/DialogInput.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+	<!-- the root element -->
+	<xs:element name="dialogInput" type="DialogInput" />
+
+	<!-- the user's input to the dialog -->
+	<xs:complexType name="DialogInput">
+		<xs:choice>
+			<xs:element name="dialogAct" type="DialogAct" />
+			<xs:element name="navigation" type="Navigation" />
+			<xs:element name="listen" type="Listen" />
+			<!-- Start Metamorph -->
+			<xs:element name="pickAndDrop" type="PickAndDrop" />
+			<!-- End Metamorph -->
+		</xs:choice>
+
+		<xs:attribute name="dialogID" type="xs:string" use="required"/>
+		<xs:attribute name="dateTime" type="xs:dateTime" use="required" />
+		<xs:attribute name="deviceID" type="xs:string" use="optional" />
+		<xs:attribute name="componentID" type="xs:string" use="optional" />
+	</xs:complexType>
+
+	<!-- a dialog act -->
+	<xs:complexType name="DialogAct">
+		<xs:choice minOccurs="1" maxOccurs="1">
+			<xs:element name="selection" type="Selection"/>
+			<xs:element name="textinput" type="Textinput"/>
+		</xs:choice>
+	</xs:complexType>
+
+	<!-- the abstract selection -->
+	<xs:complexType name="Selection">
+		<xs:sequence>
+			<xs:element name="abstractInformation" type="AbstractInformation" />
+		</xs:sequence>
+		<xs:attribute name="objectID" type="xs:string" use="required" />
+	</xs:complexType>
+
+	<!-- the abstract selection -->
+	<xs:complexType name="Textinput">
+		<xs:attribute name="objectID" type="xs:string" use="required" />
+		<xs:attribute name="informationID" type="xs:string" use="required" />
+		<xs:attribute name="value" type="xs:string" use="required" />
+		<xs:attribute name="confidence" type="xs:double" use="optional" />
+	</xs:complexType>
+
+	<!-- a special act for navigation-->
+	<xs:complexType name="Navigation">
+		<xs:sequence>
+			<xs:element name="abstractInformation" type="AbstractInformation" />
+		</xs:sequence>
+		<xs:attribute name="description" type="xs:string" use="optional" />
+	</xs:complexType>
+
+	<!-- a special act to listen -->
+	<xs:complexType name="Listen">
+		<xs:sequence>
+			<xs:element name="abstractInformation" type="AbstractInformation" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- the abstract information -->
+	<xs:complexType name="AbstractInformation">
+		<xs:attribute name="objectID" type="xs:string" use="required" />
+		<xs:attribute name="informationID" type="xs:string" use="optional" />
+	</xs:complexType>
+	
+	<!-- Start Metamorph -->
+	<xs:complexType name="PickAndDrop">
+		<xs:choice minOccurs="1" maxOccurs="1">
+			<xs:element name="pick" type="Pick"/>
+			<xs:element name="drop" type="Drop"/>
+			<xs:element name="select" type="Select"/>
+			<xs:element name="deselect" type="Deselect"/>
+			<xs:element name="clearSlot" type="ClearSlot"/>
+			<xs:element name="clearUiComponent" type="ClearUiComponent"/>
+		</xs:choice>
+	</xs:complexType>
+	
+	<xs:complexType name="Pick">
+		<xs:sequence>
+			<xs:element name="abstractInformation" type="AbstractInformation" />
+		</xs:sequence>
+		<xs:attribute name="slotID" type="xs:integer" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Drop">
+		<xs:sequence>
+			<xs:element name="abstractInformation" type="AbstractInformation" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Select">
+		<xs:attribute name="slotID" type="xs:string" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="Deselect">
+		<xs:attribute name="slotID" type="xs:string" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ClearSlot">
+		<xs:attribute name="slotID" type="xs:string" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="ClearUiComponent">
+		<xs:attribute name="objectID" type="xs:string" use="required" />
+	</xs:complexType>
+	<!-- End Metamorph -->
+</xs:schema>

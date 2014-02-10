@@ -15,6 +15,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using CommonLib;
+using SemaineApi.System;
+using SemaineApi.Components;
+using Budgie.SemaineComponents;
 
 
 namespace Budgie
@@ -24,11 +27,113 @@ namespace Budgie
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        /// <summary>
+        /// Semaine ComponentRunner
+        /// </summary>
+        public static ComponentRunner runner = new ComponentRunner("config\\sfb.config.xml");
+
+        /// <summary>
+        /// the semaine component representing this PC and its output components
+        /// </summary>
+        private DeviceModelSenderComponent semaineDeviceComponent;
+
+        /// <summary>
+        /// the semaine component representing the person model
+        /// </summary>
+        private PersonModelSender semainePersonModel;
+
+        /// <summary>
+        /// the semaine component representing the dialog input
+        /// </summary>
+        private DialogInputSender semaineDialogInput;
+
+        /// <summary>
+        /// the semaine component representing the surroundings model
+        /// </summary>
+        private SurroundingsModelSender surroundingsPersonModel;
+
+        /// <summary>
+        /// the semaine component representing the distance relations
+        /// </summary>
+        private DistanceRelationsSender distanceRelations;
+
+        /// <summary>
+        /// the device's config file
+        /// </summary>
+        private const String XML_CONFIG_FILE = "DeviceModel.xml";
+        private const String DEVICE_MODEL_XSD_FILE = "DeviceModel.xsd";
+        private const String COMPONENT_MODEL_XSD_FILE = "ComponentModel.xsd";
+
+        /// <summary>
+        /// the actual device name
+        /// </summary>
+        private String deviceName = "Budgie";
+        
+        
+        
+        
+
         public MainWindow()
         {
             InitializeComponent();
+            
+            // SEMAINE
 
+            // this client's semaine component runner
+            runner.Go();
+
+            Component comp = runner.CreateComponent("Budgie:Budgie.SemaineComponents.DeviceModelSenderComponent(" + deviceName + ")");
+            runner.AddComponent(comp);
+            // type-cast the well-known component
+            if (comp is DeviceModelSenderComponent)
+            {
+                semaineDeviceComponent = (DeviceModelSenderComponent)comp;
+                
+                semaineDeviceComponent.SetDeviceRuntime();
+                // TODO: setMainWindow(this) - üis this needed?
+                // semaineDeviceComponent.setMainWindow(this);
+            }
+
+            Component comp2 = runner.CreateComponent("Budgie:Budgie.SemaineComponents.PersonModelSender");
+            runner.AddComponent(comp2);
+            // type-cast the well-known component
+            if (comp2 is PersonModelSender)
+            {
+                semainePersonModel = (PersonModelSender)comp2;
+            }
+
+            Component comp3 = runner.CreateComponent("Budgie:Budgie.SemaineComponents.DialogInputSender(" + deviceName + ")");
+            runner.AddComponent(comp3);
+            // type-cast the well-known component
+            if (comp3 is DialogInputSender)
+            {
+                semaineDialogInput = (DialogInputSender)comp3;
+            }
+
+            Component comp4 = runner.CreateComponent("Budgie:Budgie.SemaineComponents.SurroundingsModelSender");
+            runner.AddComponent(comp4);
+            // type-cast the well-known component
+            if (comp4 is SurroundingsModelSender)
+            {
+                surroundingsPersonModel = (SurroundingsModelSender)comp4;
+            }
+
+            Component comp5 = runner.CreateComponent("Budgie:Budgie.SemaineComponents.DistanceRelationsSender");
+            runner.AddComponent(comp5);
+            // type-cast the well-known component
+            if (comp5 is DistanceRelationsSender)
+            {
+                distanceRelations = (DistanceRelationsSender)comp5;
+            }
+
+
+            // TEST
             while(true){
+                GenericDialogInput diaIn = new GenericDialogInput();
+                semaineDialogInput.sendDialogInput(diaIn);
+
+
                 GenericPersonModel p = new GenericPersonModel("A");
                 Console.WriteLine(p.Person.Name.First());
                 Console.WriteLine(p.Person.Age.First());
@@ -72,6 +177,20 @@ namespace Budgie
                 Console.WriteLine(s.Surrounding.Illumination[Level.low]);
                 Console.WriteLine(s.Surrounding.Illumination[Level.middle]);
                 Console.WriteLine(s.Surrounding.Illumination[Level.high]);
+
+
+                Console.WriteLine("DistanceRelations");
+                GenericDistanceRelations relations = new GenericDistanceRelations();
+                Console.WriteLine("1st Set");
+                foreach (DeviceComponentDistance dist in relations.DistanceRelations.DeviceComponentDistanceSet)
+                {
+                    Console.WriteLine(dist.DeviceID + " " + dist.ComponentID + " " + dist.DistanceTo);
+                    Console.WriteLine("IntimateSpaceProbability " + dist.IntimateSpaceProbability);
+                    Console.WriteLine("OuterSpaceProbability " + dist.OuterSpaceProbability);
+                    Console.WriteLine("PersonalSpaceProbability " + dist.PersonalSpaceProbability);
+                    Console.WriteLine("PublicSpaceProbability " + dist.PublicSpaceProbability);
+                    Console.WriteLine("SocialSpaceProbability " + dist.SocialSpaceProbability);
+                }
 
                 Thread.Sleep(1000);
             }

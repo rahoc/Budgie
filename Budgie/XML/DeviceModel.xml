@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- inputMessageType = ( InteractionInput | DialogInput )-->
+<!-- defaultLanguage = ( de | en )-->
+<device xmlns="http://sfb-trr-62.de/b3/DeviceModel.xsd"
+		xmlns:comp="http://sfb-trr-62.de/b3/ComponentModel.xsd"
+		deviceID="Budgie" name="Budgie"
+		defaultLanguage="en"
+		inputMessageType="DialogInput"
+		displayClockWhenIdle="false">
+
+  <outputComponent deviceComponentID="TouchScreen" outputEncoderMedium="gui" inputDecoderMedium="touch">
+    <comp:supportedOutputChannel>visual</comp:supportedOutputChannel>
+    <comp:supportedInputChannel>tactile</comp:supportedInputChannel>
+
+    <comp:screenSize>big</comp:screenSize>
+    <comp:privacyAspect>isPublic</comp:privacyAspect>
+    <comp:detectability>high</comp:detectability>
+
+    <comp:supportedOutputTypes>
+      <comp:topic>
+        <comp:informationType type="text"/>
+      </comp:topic>
+
+      <comp:dialogAct>
+        <comp:information>
+          <comp:informationType type="text"/>
+          <comp:informationType type="picture"/>
+          <comp:informationType type="video"/>
+        </comp:information>
+        <comp:selection>
+          <comp:informationType type="text"/>
+          <comp:informationType type="picture"/>
+        </comp:selection>
+        <comp:collection>
+          <comp:informationType type="text"/>
+          <comp:informationType type="picture"/>
+        </comp:collection>
+        <comp:controlType type="audioControl"/>
+        <comp:controlType type="movieControl"/>
+      </comp:dialogAct>
+
+      <comp:navigation>
+        <comp:informationType type="text"/>
+      </comp:navigation>
+
+      <comp:listen>
+        <comp:informationType type="recognitionChoices"/>
+      </comp:listen>
+    </comp:supportedOutputTypes>
+  </outputComponent>
+
+  <outputComponent deviceComponentID="TTS" outputEncoderMedium="tts">
+    <comp:supportedOutputChannel>aural</comp:supportedOutputChannel>
+    <comp:privacyAspect>isPublic</comp:privacyAspect>
+    <comp:detectability>high</comp:detectability>
+    <comp:supportedOutputTypes>
+      <comp:topic>
+        <comp:informationType type="ttsText"/>
+      </comp:topic>
+
+      <comp:dialogAct>
+        <comp:information>
+          <comp:informationType type="ttsText"/>
+        </comp:information>
+        <comp:selection>
+          <comp:informationType type="ttsText"/>
+        </comp:selection>
+      </comp:dialogAct>
+
+      <comp:navigation>
+        <comp:informationType type="ttsText"/>
+      </comp:navigation>
+    </comp:supportedOutputTypes>
+  </outputComponent>
+
+  <outputComponent deviceComponentID="ASR" inputDecoderMedium="speech" asrMinAudioLevel="6.9">
+    <comp:supportedInputChannel>aural</comp:supportedInputChannel>
+    <!--head set microphone-->
+    <comp:privacyAspect>isPrivate</comp:privacyAspect>
+    <comp:supportedOutputTypes>
+      <comp:dialogAct>
+        <comp:information>
+          <comp:informationType type="text"/>
+        </comp:information>
+        <comp:selection>
+          <comp:informationType type="recognitionChoices"/>
+        </comp:selection>
+        <comp:controlType type="audioControl"/>
+        <comp:controlType type="movieControl"/>
+      </comp:dialogAct>
+
+      <comp:navigation>
+        <comp:informationType type="recognitionChoices"/>
+      </comp:navigation>
+
+      <comp:listen>
+        <comp:informationType type="recognitionChoices"/>
+      </comp:listen>
+    </comp:supportedOutputTypes>
+
+  </outputComponent>
+</device>

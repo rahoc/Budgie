@@ -34,11 +34,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Apache.NMS">
+      <HintPath>..\..\..\..\Studium\HiWi\SVN\Middleware\MiddlewareNET\SemaineAPI_NET4.0\Apache.NMS.dll</HintPath>
+    </Reference>
+    <Reference Include="Apache.NMS.ActiveMQ">
+      <HintPath>..\..\..\..\Studium\HiWi\SVN\Middleware\MiddlewareNET\SemaineAPI_NET4.0\Apache.NMS.ActiveMQ.dll</HintPath>
+    </Reference>
     <Reference Include="CommonLib">
       <HintPath>..\..\..\..\Studium\HiWi\SVN\B3\DS1\System\CommonLib\bin\Debug\CommonLib.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\..\Studium\HiWi\SVN\Middleware\MiddlewareNET\SemaineAPI_NET4.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="SemaineApi">
+      <HintPath>..\..\..\..\Studium\HiWi\SVN\Middleware\MiddlewareNET\SemaineAPI_NET4.0\SemaineApi.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -57,8 +70,28 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DeutscheNamen.cs" />
+    <Compile Include="DialogInput.cs" />
+    <Compile Include="DialogIn\DialogInput.cs">
+      <DependentUpon>DialogInput.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DialogIn\IDialogInputItem.cs" />
+    <Compile Include="DialogIn\ListenDialogInputItem.cs" />
+    <Compile Include="DialogIn\NavigationDialogInputItem.cs" />
+    <Compile Include="DialogIn\PickAndDropDialogInputItem.cs" />
+    <Compile Include="DialogIn\SelectionDialogInputItem.cs" />
+    <Compile Include="DialogIn\TextInputDialogInputItem.cs" />
+    <Compile Include="SemaineComponents\DistanceRelationsSender.cs" />
+    <Compile Include="GenericDeviceModel.cs" />
+    <Compile Include="GenericDeviceModelList.cs" />
+    <Compile Include="GenericDialogOutput.cs" />
+    <Compile Include="GenericDistanceRelations.cs" />
     <Compile Include="GenericPersonModel.cs" />
     <Compile Include="Randomizer.cs" />
+    <Compile Include="SemaineComponents\DeviceModelSenderComponent.cs" />
+    <Compile Include="SemaineComponents\DialogInputSender.cs" />
+    <Compile Include="GenericDialogInput.cs" />
+    <Compile Include="SemaineComponents\PersonModelSender.cs" />
+    <Compile Include="SemaineComponents\SurroundingsModelSender.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -91,6 +124,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="DialogIn\DialogInput.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -101,10 +137,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="config\log4net.properties.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="config\sfb.config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Resource Include="DialogIn\dialogInputExample.xml" />
+    <None Include="XML\DeviceModel.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="XML\PersonModel.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

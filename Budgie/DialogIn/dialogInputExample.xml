@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialogInput 
+  xmlns="http://sfb-trr-62.de/b3/DialogInput.xsd" 
+  dialogID="3.1" 
+  dateTime="2012-02-15T19:16:36" 
+  deviceID="Experimental Platform"
+  componentID="TouchScreen">
+
+  <navigation>
+    <abstractInformation objectID="asdf" />
+  </navigation>
+  
+  <!--<dialogAct>
+    <selection objectID="fg">
+      <abstractInformation objectID="asdf"/>
+    </selection>
+  </dialogAct>-->
+  
+  <!--<listen>
+    <abstractInformation objectID="asdf"/>
+  </listen>-->
+  
+</dialogInput>

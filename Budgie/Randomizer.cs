@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Budgie
 {
-    class Randomizer
+    public class Randomizer
     {
         /// <summary>
         /// Summe erstellt eine spezifische Anzahl Zufallszahlen, die zusammen eine bestimmte Summe ergeben
@@ -91,7 +91,7 @@ namespace Budgie
                     newValue = Randomizer.GenerateRandomNumber(min, max);
                 }
                 while (values.Contains(newValue));
-                // Füge einigartige Zahl hinzu
+                // Füge einzigartige Zahl hinzu
                 values.Add(newValue);
             }
             // Erzeuge Wahrscheinlichkeiten

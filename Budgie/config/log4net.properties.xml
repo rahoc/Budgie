@@ -1,0 +1,32 @@
+<log4net>
+    <appender name="stderr" type="log4net.Appender.ConsoleAppender">
+        <!-- stderr uses PatternLayout -->
+        <layout type="log4net.Layout.PatternLayout">
+            <!-- Print the date in ISO 8601 format -->
+            <conversionPattern value="%date [%thread] %-5level %logger %ndc - %message%newline" />
+        </layout>
+    </appender>
+	
+    <appender name="logfile" type="log4net.Appender.FileAppender">
+		<file value="logs/semaine.log" />
+		<appendToFile value="true" />
+		<lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
+		<layout type="log4net.Layout.PatternLayout">
+			<conversionPattern value="%date [%thread] %-5level %logger [%property{NDC}] - %message%newline" />
+		</layout>
+	</appender>
+
+	
+  <!-- Turn root logger off -->
+  <root>
+      <level value="OFF"/>
+      <appender-ref ref="stderr" />
+  </root>
+
+  <!-- Set logging for log4net.Logger.Semaine to debug-->
+  <logger name="log4net.Logger.Semaine">
+    <level value="DEBUG"/>
+    <appender-ref ref="logfile"/>
+    <appender-ref ref="stderr"/>
+  </logger>
+</log4net>
